@@ -1,0 +1,64 @@
+// API Response Types
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  error?: string;
+}
+
+// Category Types
+export interface SymptomCategory {
+  id: number;
+  name: string;
+  details: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Symptom Types
+export interface Symptom {
+  id: number;
+  highIndications: string[];
+  lowIndications: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GroupedSymptom {
+  categoryId: number;
+  categoryName: string;
+  symptoms: Symptom[];
+}
+
+// Quiz Session Types
+export interface QuizSession {
+  id: number;
+  sessionId: string;
+  createdAt: string;
+  updatedAt: string;
+  selectedSymptoms?: SelectedSymptom[];
+}
+
+export interface SelectedSymptom {
+  id: number;
+  sessionId: string;
+  categoryId: number;
+  selectedHighSymptoms: string[];
+  selectedLowSymptoms: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SubmitSymptomsRequest {
+  sessionId?: string;
+  symptoms: {
+    categoryId: number;
+    selectedHighSymptoms: string[];
+    selectedLowSymptoms: string[];
+  }[];
+}
+
+export interface SubmitSymptomsResponse {
+  sessionId: string;
+  symptomsStored: number;
+  symptoms: SelectedSymptom[];
+}
