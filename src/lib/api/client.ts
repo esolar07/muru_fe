@@ -5,6 +5,7 @@ import {
   QuizSession,
   SubmitSymptomsRequest,
   SubmitSymptomsResponse,
+  Formula,
 } from '@/lib/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
@@ -45,12 +46,26 @@ class ApiClient {
     return this.request<SymptomCategory[]>('/categories');
   }
 
+  async updateCategory(id: number, data: { name: string; details?: string }) {
+    return this.request<SymptomCategory>(`/categories/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
   // Symptoms
   async getSymptoms(categoryIds?: number[]) {
     const params = categoryIds?.length
       ? `?categoryIds=${categoryIds.join(',')}`
       : '';
     return this.request<GroupedSymptom[]>(`/symptoms${params}`);
+  }
+
+  async updateSymptom(id: number, data: { highIndications: string[]; lowIndications: string[]; symptomCategoryId?: number }) {
+    return this.request<any>(`/symptoms/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
   }
 
   // Quiz Session
@@ -63,6 +78,32 @@ class ApiClient {
 
   async getSession(sessionId: string) {
     return this.request<QuizSession>(`/quiz/session/${sessionId}`);
+  }
+
+  // Formulas
+  async getFormulas() {
+    return this.request<Formula[]>('/formulas');
+  }
+
+  async getFormulaById(id: number) {
+    return this.request<Formula>(`/formulas/${id}`);
+  }
+
+  async updateFormula(id: number, data: {
+    name: string;
+    name2: string;
+    name3: string;
+    name4?: string;
+    shortDescription?: string;
+    supports?: string;
+    specialDetails?: string;
+    extraDetails?: string;
+    symptomCategoryId?: number;
+  }) {
+    return this.request<Formula>(`/formulas/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
   }
 }
 

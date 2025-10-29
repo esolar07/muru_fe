@@ -62,3 +62,23 @@ export interface SubmitSymptomsResponse {
   symptomsStored: number;
   symptoms: SelectedSymptom[];
 }
+
+// Formula Types
+export interface Formula {
+  id: number;
+  name: string;
+  name2: string;
+  name3: string;
+  name4: string;
+  shortDescription: string;
+  supports: string;
+  specialDetails: string;
+  extraDetails: string;
+  symptomCategoryId: number;
+  createdAt: string;
+  updatedAt: string;
+  symptomCategory?: {
+    id: number;
+    name: string;
+  };
+}
