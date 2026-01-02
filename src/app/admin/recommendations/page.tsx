@@ -224,7 +224,7 @@ export default function RecommendationsPage() {
                                 <div className="flex items-center gap-2">
                                   {isWinner && (
                                     <span className="px-2 py-0.5 text-xs font-bold bg-green-500 text-white rounded">
-                                      WINNER
+                                      Recommendation
                                     </span>
                                   )}
                                   <span className="font-semibold capitalize">
