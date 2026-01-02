@@ -6,6 +6,7 @@ import {
   SubmitSymptomsRequest,
   SubmitSymptomsResponse,
   Formula,
+  Recommendation,
 } from '@/lib/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
@@ -103,6 +104,18 @@ class ApiClient {
     return this.request<Formula>(`/formulas/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
+    });
+  }
+
+  // Recommendations
+  async getPendingRecommendations() {
+    return this.request<Recommendation[]>('/recommendations/pending');
+  }
+
+  async updateRecommendationStatus(id: number, status: 'pending' | 'approved' | 'denied') {
+    return this.request<Recommendation>(`/recommendations/${id}/status`, {
+      method: 'PUT',
+      body: JSON.stringify({ status }),
     });
   }
 }

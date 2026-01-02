@@ -17,7 +17,7 @@ export default function AdminPage() {
         </div>
 
         {/* Navigation Cards */}
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Link href="/admin/categories">
             <Card className="hover:bg-accent/50 transition-colors cursor-pointer h-full">
               <CardHeader>
@@ -74,6 +74,25 @@ export default function AdminPage() {
               </CardContent>
             </Card>
           </Link>
+
+          <Link href="/admin/recommendations">
+            <Card className="hover:bg-accent/50 transition-colors cursor-pointer h-full border-orange-200">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  Recommendations
+                  <ArrowRight className="h-5 w-5 text-muted-foreground" />
+                </CardTitle>
+                <CardDescription>
+                  Review pending formula recommendations
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Approve or deny recommendations
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         {/* Additional Info */}
@@ -93,6 +112,9 @@ export default function AdminPage() {
             </p>
             <p className="text-sm text-muted-foreground">
               <strong>Formulas:</strong> Edit herbal formula details, names, and descriptions
+            </p>
+            <p className="text-sm text-muted-foreground">
+              <strong>Recommendations:</strong> Review and approve/deny pending formula recommendations
             </p>
           </CardContent>
         </Card>

@@ -44,6 +44,9 @@ export interface SelectedSymptom {
   categoryId: number;
   selectedHighSymptoms: string[];
   selectedLowSymptoms: string[];
+  highMatchCount: number;
+  lowMatchCount: number;
+  score: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -81,4 +84,28 @@ export interface Formula {
     id: number;
     name: string;
   };
+}
+
+// Recommendation Types
+export interface RecommendationStatus {
+  id: number;
+  name: 'pending' | 'approved' | 'denied';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Recommendation {
+  id: number;
+  sessionId: string;
+  formulaId: number;
+  categoryId: number;
+  score: number;
+  highMatchCount: number;
+  lowMatchCount: number;
+  statusId: number;
+  createdAt: string;
+  updatedAt: string;
+  formula: Formula;
+  status: RecommendationStatus;
+  quizSession?: QuizSession;
 }
